@@ -5,7 +5,7 @@ import './App.css';
 
 class App extends React.Component{
   state = {
-    uid: 123
+    uid: null
   };
 
   render(){

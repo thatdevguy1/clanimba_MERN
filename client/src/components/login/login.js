@@ -1,4 +1,5 @@
 import React from 'react';
+import './login.css';
 
 class Login extends React.Component{
 
@@ -6,7 +7,17 @@ class Login extends React.Component{
     
     return (
       <div className="login">
-        <h1>Login Page</h1>
+        <form>
+          <label>
+            Blizzard User Name
+          </label>
+          <input name="username"></input>
+          <label>
+            Blizzard Password
+          </label>
+          <input name="passwprd"></input>
+          <button className="oAuthSubmit"></button>
+        </form>
       </div>
     );
 
