@@ -1,0 +1,8 @@
+.composeMsg{
+    position: relative;
+    display: inline-block;
+    width:40%;
+    height: 200px;
+    background: lightcyan;
+    border: solid 1px lightgray;
+}
