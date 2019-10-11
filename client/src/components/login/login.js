@@ -17,6 +17,8 @@ class Login extends React.Component{
           </label>
           <input name="passwprd"></input>
           <button className="oAuthSubmit"></button>
+
+          <a href="/auth">Log in with BLIZZ</a>
         </form>
       </div>
     );
