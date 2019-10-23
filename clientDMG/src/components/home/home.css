@@ -1,0 +1,16 @@
+.Home{
+    width: 800px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.composeMsg{
+    position: relative;
+    display: inline-block;
+    width:80%;
+    height: 100px;
+    background: lightcyan;
+    border: solid 1px lightgray;
+}

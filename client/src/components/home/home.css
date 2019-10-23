@@ -1,16 +1,21 @@
 .Home{
-    width: 800px;
+    width: 1000px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     flex-wrap: wrap;
     margin: 0 auto;
 }
 
-.composeMsg{
+/* .composeMsg{
     position: relative;
     display: inline-block;
-    width:80%;
-    height: 100px;
-    background: lightcyan;
-    border: solid 1px lightgray;
+    width:77%;
+    height: 214px;
+    margin-top: 20px;
+    background: rgb(206, 206, 206);
+} */
+
+.userContainer{
+    width:18%;
+    padding-top: 30px;
 }

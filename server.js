@@ -37,6 +37,23 @@ app.get('/user/:token', (req, res) => {
   });
 });
 
+app.post('/msg/:user/:msg', (req, res) => {
+  console.log(req.params.user + ": " + req.params.msg);
+  const user = req.params.user;
+  let msg = req.params.msg;
+
+  User.updateOne({battleTag : user}, {posts : msg}, function(err, post){
+		if(err){
+      
+      console.log("Error retrieving user " + err);
+      res.status(404);
+		} else {
+      console.log(`THIS IS THE RESULT OF THE UPDATEONE MSG ---------->  ${JSON.stringify(post)}`);
+      res.status(200).send();
+		}
+  });
+});
+
 /* --------- BLIZZARD OAUTH2 --------- */
 
   // Set the configuration settings

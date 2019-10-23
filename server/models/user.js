@@ -9,6 +9,9 @@ var UserSchema = mongoose.Schema({
     token: {
         type: String
     },
+    posts: {
+        type: String
+    }
 });
 
 module.exports = mongoose.model('User', UserSchema);

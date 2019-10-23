@@ -1,42 +1,47 @@
 import React from 'react';
 import User from '../user/user';
 import Wall from '../wall/wall';
+import NewPost from '../newPost/newPost'
 import axios from 'axios';
+import { connect } from 'react-redux';
 import './home.css';
+import wowIcon from '../../assets/wowIcon.png'
+import * as actionCreators from '../../store/action/actions';
 
 
 class Home extends React.Component {
   state = {
-    battletag: ""
+    battletag: "",
+    token: ""
   };
 
-  componentWillMount = () => {
-    //-----------DUMMY CODE FOR TESTING--------------------------
-    this.setState({battletag: "Hellik#1992"});
-   
-    /************LEGIT CODE BELOW TO GET USER NAME***************/
-    // axios.get(`/user/${this.props.token}`)
-    //   .then( (response) => {
-    //     // handle success
-    //     this.setState({ battletag: response.data.battleTag });
-    //   })
-    //   .catch(function (error) {
-    //     // handle error SEND BACK TO LOGIN
-    //     console.log(error);
-    //   });
-    };
+  componentWillMount = () => { 
+    this.props.saveUser(this.props.token);
+  };
   
   render(){
     return (
       <div className="Home">
-        <User user={this.state.battletag}/>
-        <div className="composeMsg">
+        <div className="userContainer">
+          <User user={this.props.battletag} icon={wowIcon}/>
         </div>
+        <NewPost />
         <Wall />
       </div>
-    );
-  }
+    ); 
+  };
  
-}
+};
 
-export default Home;
+const mapStateToProps = state => ({
+    battletag: state.battletag
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    saveUser: (result) => dispatch(actionCreators.storeResult(result))
+    //saveUser: () => dispatch({type: 'SAVE_USER'})
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -9,7 +9,7 @@ class App extends React.Component{
   state = {
     auth: false,
     uid: null,
-    token: ""
+    token: "null"
   };
 
   setToken = (token) => {
@@ -29,10 +29,10 @@ class App extends React.Component{
       <BrowserRouter>
         <div className="App">
           {/* -------------- LEGIT CODE BELOW REMOVED FOR TESTING ---------------- */}
-          <Route path="/" exact render={ this.state.auth == true ? (props) => (<Home {...props} token={this.state.token} />) : (props) => (<Login {...props} /> )} />
-          {/* <Route path = "/" render = {props => <Home {...props} />} /> */}
+          {/* <Route path="/" exact render={ this.state.auth == true ? (props) => (<Home {...props} token={this.state.token} />) : (props) => (<Login {...props} /> )} /> */}
+          <Route path = "/" render = {props => <Home {...props} />} />
           <Route path="/callback" render={ props => <Callback {...props} setToken={this.setToken} />} />
-       
+          {/* <Route path="/callback" component={()=> <Callback setToken = {()=>{this.setToken}} />} /> */}
 
         </div>
       </BrowserRouter>

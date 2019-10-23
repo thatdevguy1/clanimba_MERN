@@ -1,0 +1,9 @@
+.App{
+    width: 100vw;
+}
+
+.mainWrapper{
+    width: 70vw;
+    display: flex;
+    justify-content: space-around
+}
