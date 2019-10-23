@@ -15,7 +15,7 @@ class Post extends React.Component {
                     <User user={this.props.battletag} icon={wowIcon} />
                 </div>
                 <div className="postMsg">
-                    {this.props.msg}
+                    {this.props.post}
                 </div>
             </div>
          );
@@ -24,7 +24,8 @@ class Post extends React.Component {
 
 
 const mapStateToProps = state => ({
-    battletag: state.battletag
+    battletag: state.battletag,
+    post: state.post
 });
 
 // const mapDispatchToProps = dispatch => {
