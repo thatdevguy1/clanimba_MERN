@@ -5,26 +5,22 @@ import './wall.css';
 
 class Wall extends React.Component{
 
-  componentDidMount(){
-    console.log("wall component props for post: " + this.props.post);
-  }
 
   render(){
-    
+    let postList = this.props.post.map( post => <Post msg={post} /> )
     return (
       <div className="wall">
-        <Post msg={this.props.post} />
-       
+        {postList}
       </div>
     );
 
-  }
+  };
   
-}
+};
 
 const mapStatetoProps = state => ({
   battletag: state.battletag,
-  post: state.msg
+  post: state.post
 });
 
 export default connect(mapStatetoProps)(Wall);

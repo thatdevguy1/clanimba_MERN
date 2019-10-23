@@ -2,7 +2,7 @@ const initialState = {
     auth: false,
     battletag: '',
     token: null,
-    post: null
+    post: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -16,10 +16,11 @@ const reducer = (state = initialState, action) => {
             };
         case "SAVE_MSG":
         console.log("save msg reached");
+        let post = [...state.post, action.result.msg];
             return {
                 ...state,
                 battletag: action.result.user,
-                post: action.result.msg
+                post: post
             }
     };
 

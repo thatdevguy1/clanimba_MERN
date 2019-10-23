@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 import wowIcon from '../../assets/wowIcon.png'
 
 class Post extends React.Component {
-    
-    
 
     render() { 
         return ( 
@@ -15,7 +13,7 @@ class Post extends React.Component {
                     <User user={this.props.battletag} icon={wowIcon} />
                 </div>
                 <div className="postMsg">
-                    {this.props.post}
+                    {this.props.msg}
                 </div>
             </div>
          );
