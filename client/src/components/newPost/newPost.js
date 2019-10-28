@@ -16,7 +16,8 @@ class NewPost extends React.Component {
     
     this.props.saveMsg({
       user: this.props.battletag,
-      msg: this.state.msg
+      msg: this.state.msg,
+      icon: this.props.icon
     });
     //send ajax call to post msg
   };
@@ -39,7 +40,8 @@ class NewPost extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  battletag: state.battletag
+  battletag: state.battletag,
+  icon: state.icon
 });
 
 const mapDispatchToProps = dispatch => {

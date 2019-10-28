@@ -10,7 +10,7 @@ class Post extends React.Component {
         return ( 
             <div className="post">
                 <div className="userMsgContainer">
-                    <User user={this.props.userName} icon={this.props.icon} />
+                    <User user={this.props.userName} icon={this.props.posterIcon} />
                 </div>
                 <div className="postMsg">
                     {this.props.msg}

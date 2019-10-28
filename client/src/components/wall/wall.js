@@ -11,7 +11,7 @@ class Wall extends React.Component{
   }
 
   render(){
-    let postList = this.props.post.map( post => <Post msg={post.post} userName={post.user} /> );
+    let postList = this.props.post.map( post => <Post msg={post.post} userName={post.user} posterIcon={post.charImg}/> );
     return (
       <div className="wall">
         {postList}

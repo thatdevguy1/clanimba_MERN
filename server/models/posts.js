@@ -6,6 +6,9 @@ var PostSchema = mongoose.Schema({
 	user: {
 		type: String
     }, 
+    charImg: {
+        type: String
+    },
     post: {
         type: String
     },

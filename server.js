@@ -49,14 +49,16 @@ app.get('/posts', (req, res) => {
   });
 });
 
-app.post('/msg/:user/:msg', (req, res) => {
+app.post('/msg/:user/:msg/:server/:numOne/:numTwo', (req, res) => {
   console.log(req.params.user + ": " + req.params.msg);
   const user = req.params.user;
+  const charImg = `${req.params.server}/${req.params.numOne}/${req.params.numTwo}`;
   let msg = req.params.msg;
   const date = new Date();
 
   let newPost = new Posts({
     user: user,
+    charImg: charImg,
     post: msg,
     date: date,
     replies: []
