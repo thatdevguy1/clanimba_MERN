@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import './home.css';
 import wowIcon from '../../assets/wowIcon.png'
 import * as actionCreators from '../../store/action/actions';
+import { SchemaType } from 'mongoose';
 
 
 class Home extends React.Component {
@@ -23,7 +24,7 @@ class Home extends React.Component {
     return (
       <div className="Home">
         <div className="userContainer">
-          <User user={this.props.battletag} icon={wowIcon}/>
+          <User user={this.props.battletag} icon={this.props.charImg}/>
         </div>
         <NewPost />
         <Wall />
@@ -34,7 +35,9 @@ class Home extends React.Component {
 };
 
 const mapStateToProps = state => ({
-    battletag: state.battletag
+    battletag: state.battletag,
+    charImg: state.icon,
+    guild: state.guild
 });
 
 const mapDispatchToProps = dispatch => {

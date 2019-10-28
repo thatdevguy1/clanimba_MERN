@@ -10,7 +10,7 @@ class Post extends React.Component {
         return ( 
             <div className="post">
                 <div className="userMsgContainer">
-                    <User user={this.props.battletag} icon={wowIcon} />
+                    <User user={this.props.userName} icon={this.props.icon} />
                 </div>
                 <div className="postMsg">
                     {this.props.msg}
@@ -23,6 +23,8 @@ class Post extends React.Component {
 
 const mapStateToProps = state => ({
     battletag: state.battletag,
+    icon: state.icon,
+    guild: state.guild,
     post: state.post
 });
 

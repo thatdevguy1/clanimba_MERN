@@ -6,6 +6,12 @@ var UserSchema = mongoose.Schema({
 	battleTag: {
 		type: String
     }, 
+    charImg: {
+        type: String
+    },
+    guild: {
+        type: String
+    },
     token: {
         type: String
     },

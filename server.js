@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 bodyParser = require('body-parser');
 const User = require('./server/models/user');
-
+const Posts = require('./server/models/posts');
 dotenv.config();
 
 const app = express();
@@ -18,9 +18,7 @@ app.use(express.static(path.join(__dirname, './client/build')));
 
 app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "/index.html"));
-  });
-
-
+});
 
 /* ROUTES */
 app.get('/user/:token', (req, res) => {
@@ -37,19 +35,41 @@ app.get('/user/:token', (req, res) => {
   });
 });
 
+app.get('/posts', (req, res) => {
+  console.log(req.params.token);
+  Posts.find(function(err, posts){
+		if(err){
+      
+      console.log("Error retrieving user " + err);
+      res.status(404);
+		} else {
+      console.log(`THIS IS POSTS ---------->  ${posts}`);
+			res.json(posts);
+		}
+  });
+});
+
 app.post('/msg/:user/:msg', (req, res) => {
   console.log(req.params.user + ": " + req.params.msg);
   const user = req.params.user;
   let msg = req.params.msg;
+  const date = new Date();
 
-  User.updateOne({battleTag : user}, {posts : msg}, function(err, post){
+  let newPost = new Posts({
+    user: user,
+    post: msg,
+    date: date,
+    replies: []
+  });
+
+  newPost.save(function(err, post){
 		if(err){
       
       console.log("Error retrieving user " + err);
       res.status(404);
 		} else {
       console.log(`THIS IS THE RESULT OF THE UPDATEONE MSG ---------->  ${JSON.stringify(post)}`);
-      res.status(200).send();
+      res.status(200).json(newPost);
 		}
   });
 });
@@ -105,51 +125,52 @@ const credentials = {
 
       const token = oauth2.accessToken.create(result);
       console.log("token is here::::::::::: " + JSON.stringify(token));
-
-      //console.log(token.token.access_token);
-
-
-    //   axios({
-    //     method: 'get',
-    //     url: `https://us.api.blizzard.com//wow/user/characters?access_token=${token.token.access_token}`
-    //   })
-    //     .then(function (response) {
-    //         console.log(response.data);
-    //         return res.status(200).json(response.data);
-    //     })
-    //     .catch(err => {
-    //         console.error("Error Getting Userinfo", err.message);
-    //     });
-    
     
     //Get userinfo including ID and GameTag
-    axios({
-        method: 'get',
-        url: `https://us.battle.net/oauth/userinfo?access_token=${token.token.access_token}`
-    }).then(function (response) {
-       
-        var newUser = new User({
-            battleTag: response.data.battletag,
-            token: code
-        });
+      axios({
+          method: 'get',
+          url: `https://us.battle.net/oauth/userinfo?access_token=${token.token.access_token}`
+      }).then(function (response) {
+          axios({
+            method: 'get',
+            url: `https://us.api.blizzard.com//wow/user/characters?access_token=${token.token.access_token}`
+          })
+          .then(function (response2) {
+              console.log(response2.data);
+            
 
-        User.count({battleTag: response.data.battletag}, (err, docs) => {
-            if (err) throw err;
-            if(docs > 0){
-              console.log("found a user in database " + response.data.battletag);
-                User.findOneAndUpdate({battleTag : response.data.battletag}, {token : code}, (err, doc) => {
-                    if (err) throw err;
-                    console.log(doc);
-                    res.sendFile(path.join(__dirname, "client/build/index.html")); 
-                });
-            } else {
-                newUser.save((err, user)=>{
-                  console.log(user)
-                    if (err) throw err;
-                    return res.sendFile(path.join(__dirname, "client/build/index.html")); 
-                });
-            }
-        });
+              //user information based on the first charachter in the list
+              var newUser = new User({
+                battleTag: response.data.battletag,
+                charImg: response2.data.characters[0].thumbnail,
+                guild: response2.data.characters[0].guild,
+                token: code
+              });
+    
+              User.count({battleTag: response.data.battletag}, (err, docs) => {
+                  if (err) throw err;
+                  if(docs > 0){
+                    console.log("found a user in database " + response.data.battletag);
+                      User.findOneAndUpdate({battleTag : response.data.battletag}, {token : code}, (err, doc) => {
+                          if (err) throw err;
+                          console.log(doc);
+                          res.sendFile(path.join(__dirname, "client/build/index.html")); 
+                      });
+                  } else {
+                      newUser.save((err, user)=>{
+                        console.log(user)
+                          if (err) throw err;
+                          return res.sendFile(path.join(__dirname, "client/build/index.html")); 
+                      });
+                  }
+              });
+          })
+          .catch(err => {
+              console.error("Error Getting Userinfo", err.message);
+          });
+      
+        
+        
 
     }).catch(err => {
         console.error("Error Getting Userinfo", err.message);

@@ -16,7 +16,7 @@ class User extends React.Component{
     return (
       <div className="user">
         <div id="userWrap">
-          <img className="userImg"  src={this.props.icon} />
+          <img className="userImg"  src={"https://render-us.worldofwarcraft.com/character/" + this.props.icon} />
           <p>{this.props.user}</p>
         </div>
       </div>

@@ -14,6 +14,27 @@ export const saveMsg = (res) => {
   }
 };
 
+export const savePosts = (res) => {
+  return{
+    type: 'SAVE_POSTS',
+    result: res
+  }
+}
+
+export const findPosts = () => {
+  return dispatch => {
+    axios.get(`/posts`)
+    .then( (response) => {
+      // handle success
+      dispatch(savePosts(response));
+    })
+    .catch(function (error) {
+      // handle error SEND BACK TO LOGIN***
+      console.log(error);
+    });
+  }
+}
+
 
 
 export const storeResult = ( res ) => {
@@ -27,9 +48,7 @@ export const storeResult = ( res ) => {
           // handle error SEND BACK TO LOGIN***
           console.log(error);
         });
-
-      
-  }
+    }
 };
 
 export const storeMsg = ( res ) => {
@@ -38,7 +57,7 @@ export const storeMsg = ( res ) => {
       .then( (response) => {
         // handle success
         console.log(`The result in the ajax call is: ${JSON.stringify(response)}`)
-        dispatch(saveMsg(res));
+        dispatch(saveMsg(response));
       })
       .catch(function (error) {
         // handle error SEND BACK TO LOGIN***

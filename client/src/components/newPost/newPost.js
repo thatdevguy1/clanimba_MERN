@@ -14,7 +14,6 @@ class NewPost extends React.Component {
   handlePost = (event) => {
     event.preventDefault();
     
-    console.log(this.props.battletag + ": " + this.state.msg);
     this.props.saveMsg({
       user: this.props.battletag,
       msg: this.state.msg
