@@ -139,15 +139,25 @@ const credentials = {
           })
           .then(function (response2) {
               console.log(response2.data);
-            
+              var newUser;
 
               //user information based on the first charachter in the list
-              var newUser = new User({
+
+              if(response2.data.characters.length > 0) {
+                newUser = new User({
+                  battleTag: response.data.battletag,
+                  charImg: response2.data.characters[0].thumbnail,
+                  guild: response2.data.characters[0].guild,
+                  token: code
+                });
+            } else {
+              newUser = new User({
                 battleTag: response.data.battletag,
-                charImg: response2.data.characters[0].thumbnail,
-                guild: response2.data.characters[0].guild,
+                charImg: null,
+                guild: null,
                 token: code
               });
+            }
     
               User.count({battleTag: response.data.battletag}, (err, docs) => {
                   if (err) throw err;

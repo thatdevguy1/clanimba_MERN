@@ -53,7 +53,7 @@ export const storeResult = ( res ) => {
 
 export const storeMsg = ( res ) => {
   return dispatch => {
-    axios.post(`/msg/${escape(res.user)}/${res.msg}/${escape(escape(res.icon))}`)
+    axios.post(`/msg/${escape(res.user)}/${res.msg}/${res.icon}`)
       .then( (response) => {
         // handle success
         console.log(`The result in the ajax call is: ${JSON.stringify(response)}`)

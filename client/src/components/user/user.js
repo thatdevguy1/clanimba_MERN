@@ -1,5 +1,6 @@
 import React from 'react';
 import './user.css';
+import wowIcon from '../../assets/wowIcon.png';
 
 class User extends React.Component{
 
@@ -12,11 +13,13 @@ class User extends React.Component{
   // }
   
   render(){
+
+    let icon = this.props.icon ? "https://render-us.worldofwarcraft.com/character/" + this.props.icon : wowIcon;
     
     return (
       <div className="user">
         <div id="userWrap">
-          <img className="userImg"  src={"https://render-us.worldofwarcraft.com/character/" + this.props.icon} />
+          <img className="userImg"  src={icon} />
           <p>{this.props.user}</p>
         </div>
       </div>
