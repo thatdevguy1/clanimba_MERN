@@ -16,7 +16,11 @@ var PostSchema = mongoose.Schema({
         type: String
     },
     replies: {
-        type: [String]
+        type: [{
+            user: String,
+            icon: String,
+            msg: String
+        }]
     }
 });
 

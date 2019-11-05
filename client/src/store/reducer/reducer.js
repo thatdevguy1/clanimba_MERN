@@ -1,5 +1,4 @@
 const initialState = {
-    auth: false,
     battletag: '',
     icon: '',
     guild: '',
@@ -19,17 +18,27 @@ const reducer = (state = initialState, action) => {
                 guild: action.result.data.guild
             };
 
+        //SAVING POSTS TO DB
         case "SAVE_MSG":
-        console.log("save msg reached");
-        let post = [...state.post, action.result.data];
+            if (state.post.filter(e => e._id === action.result.data._id).length > 0) {
+                var post = state.post.map(post => {
+                    if (post._id != action.result.data._id){
+                        return post
+                    } 
+                    return action.result.data
+                });
+            } else {
+                var post = [...state.post, action.result.data];
+            } 
             return {
                 ...state,
                 battletag: action.result.user,
                 post: post
             };
         
+            //GETTING POSTS FROM DB (bad naming for case)
         case "SAVE_POSTS":
-        console.log("getting posts reached in reducer");
+        console.log("getting posts reached in reducer"+ JSON.stringify(action.result.data));
             return {
                 ...state, 
                 post: action.result.data

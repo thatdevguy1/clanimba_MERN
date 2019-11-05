@@ -11,10 +11,10 @@ class Wall extends React.Component{
   }
 
   render(){
-    let postList = this.props.post.map( post => <Post msg={post.post} userName={post.user} posterIcon={post.charImg}/> );
+    let postList = this.props.post.map( post => <Post opId={post._id} msg={post.post} userName={post.user} posterIcon={post.charImg} replyMsgs={post.replies} /> );
     return (
       <div className="wall">
-        {postList}
+        {postList.reverse()}
       </div>
     );
   };

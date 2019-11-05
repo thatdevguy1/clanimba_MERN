@@ -2,13 +2,10 @@ import React from 'react';
 import User from '../user/user';
 import Wall from '../wall/wall';
 import NewPost from '../newPost/newPost'
-import axios from 'axios';
 import { connect } from 'react-redux';
 import './home.css';
 import wowIcon from '../../assets/wowIcon.png'
 import * as actionCreators from '../../store/action/actions';
-import { SchemaType } from 'mongoose';
-
 
 class Home extends React.Component {
   state = {
@@ -26,7 +23,7 @@ class Home extends React.Component {
         <div className="userContainer">
           <User user={this.props.battletag} icon={this.props.charImg}/>
         </div>
-        <NewPost />
+        <NewPost type="normalPost"/>
         <Wall />
       </div>
     ); 

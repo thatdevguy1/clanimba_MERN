@@ -14,11 +14,16 @@ class NewPost extends React.Component {
   handlePost = (event) => {
     event.preventDefault();
     
-    this.props.saveMsg({
+    this.props.type === "normalPost" ? this.props.saveMsg({
       user: this.props.battletag,
       msg: this.state.msg,
       icon: this.props.icon
-    });
+    }) : this.props.saveReply({
+      user: this.props.battletag,
+      msg: this.state.msg,
+      icon: this.props.icon,
+      opId: this.props.opId
+    })
     //send ajax call to post msg
   };
 
@@ -31,7 +36,7 @@ class NewPost extends React.Component {
   render(){
     return (
       <div className="NewPost">
-        <textarea class="postText" onChange={this.handleChange} placeholder="Create New Post..."></textarea>
+        <textarea className="postText" onChange={this.handleChange} placeholder="Create New Post..."></textarea>
         <button className="submitPost" onClick={this.handlePost}>POST</button>
       </div>
     ); 
@@ -46,7 +51,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    saveMsg: (result) => dispatch(actionCreators.storeMsg(result))
+    saveMsg: (result) => dispatch(actionCreators.storeMsg(result)),
+    saveReply: (result) => dispatch(actionCreators.storeReply(result))
     //saveUser: () => dispatch({type: 'SAVE_USER'})
   };
 };

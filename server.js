@@ -76,6 +76,24 @@ app.post('/msg/:user/:msg/:server/:numOne/:numTwo', (req, res) => {
   });
 });
 
+app.put('/reply/:user/:msg/:server/:numOne/:numTwo/:opId', (req, res) => {
+  console.log(req.params.user + ": " + req.params.msg);
+  const user = req.params.user;
+  const charImg = `${req.params.server}/${req.params.numOne}/${req.params.numTwo}`;
+  let msg = req.params.msg;
+  const opId = req.params.opId;
+  const date = new Date();
+
+  Posts.findOneAndUpdate({_id: opId}, {$push: {replies : {user: user, icon: charImg, msg: msg}}}, {new: true}, (err, doc) => {
+    if (err){
+      res.status(404);
+    }
+    console.log(doc);
+    res.status(200).json(doc);
+});
+
+});
+
 /* --------- BLIZZARD OAUTH2 --------- */
 
   // Set the configuration settings

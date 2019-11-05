@@ -25,6 +25,7 @@ export const findPosts = () => {
   return dispatch => {
     axios.get(`/posts`)
     .then( (response) => {
+      console.log(JSON.stringify(response));
       // handle success
       dispatch(savePosts(response));
     })
@@ -57,6 +58,21 @@ export const storeMsg = ( res ) => {
       .then( (response) => {
         // handle success
         console.log(`The result in the ajax call is: ${JSON.stringify(response)}`)
+        dispatch(saveMsg(response));
+      })
+      .catch(function (error) {
+        // handle error SEND BACK TO LOGIN***
+        console.log(error);
+    });
+  }
+};
+
+export const storeReply = ( res ) => {
+  return dispatch => {
+    axios.put(`/reply/${escape(res.user)}/${res.msg}/${res.icon}/${res.opId}`)
+      .then( (response) => {
+        // handle success
+        console.log(`The result in the ajax call for REPLY is: ${JSON.stringify(response)}`)
         dispatch(saveMsg(response));
       })
       .catch(function (error) {
