@@ -3,6 +3,8 @@ import axios from 'axios';
 import { connect } from 'react-redux'
 import './newPost.css';
 import * as actionCreators from '../../store/action/actions';
+import {TextField} from '@material-ui/core';
+
 
 
 class NewPost extends React.Component {
@@ -36,7 +38,15 @@ class NewPost extends React.Component {
   render(){
     return (
       <div className="NewPost">
-        <textarea className="postText" onChange={this.handleChange} placeholder="Create New Post..."></textarea>
+       <TextField
+            id="outlined-basic"
+            label="New Post"
+            margin="normal"
+            variant="outlined"
+            onChange={this.handleChange}
+            multiline={true}
+          />
+        {/* <textarea className="postText" onChange={this.handleChange} placeholder="Create New Post..."></textarea> */}
         <button className="submitPost" onClick={this.handlePost}>POST</button>
       </div>
     ); 

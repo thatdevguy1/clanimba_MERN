@@ -5,6 +5,7 @@ import './post.css';
 import Reply from '../reply/reply';
 import { connect } from 'react-redux';
 import wowIcon from '../../assets/wowIcon.png';
+import {Paper} from '@material-ui/core';
 
 class Post extends React.Component {
     

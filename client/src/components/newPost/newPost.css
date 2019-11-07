@@ -1,20 +1,21 @@
 .submitPost{
     border:solid 1px rgb(14, 115, 209);
+    color:rgb(14, 115, 209);
     width: 20%;
     align-self: flex-end;
     margin-top: 10px;
+    outline: none;
 }
 
 textarea{
     align-self: center;
     height:80%;
-    width: 99%;
+    width: 97%;
     z-index: 2;
     margin: 0;
-    border: 2px solid #74637f;
+    border: 1px solid lightgrey;
     border-radius: 0;
-    color: #444;
-    background-color: transparent;
+    background-color: white;
     overflow: auto;
     resize: none;
     transition: transform 1s;
@@ -27,8 +28,6 @@ textarea{
     flex-direction: column;
     justify-content: space-around;
     width:75%;
-    height: 180px;
-    padding: 20px;
     margin-top: 20px;
-    background: rgb(241, 241, 241);
+    background: #f5f5f5
 }

@@ -20,10 +20,10 @@ class Home extends React.Component {
   render(){
     return (
       <div className="Home">
-        <div className="userContainer">
-          <User user={this.props.battletag} icon={this.props.charImg}/>
-        </div>
+        
+        <User user={this.props.battletag} icon={this.props.charImg}/>
         <NewPost type="normalPost"/>
+        
         <Wall />
       </div>
     ); 

@@ -11,3 +11,8 @@
 .replySection > .NewPost{
     width: auto;
 }
+
+.userWrapper > .user{
+    padding: 10px;
+    background:white;
+}

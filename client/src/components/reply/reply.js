@@ -1,6 +1,7 @@
 import React from 'react';
 import User from '../user/user';
 import './reply.css';
+import {Paper} from '@material-ui/core';
 
 class Reply extends React.Component {
     render() { 

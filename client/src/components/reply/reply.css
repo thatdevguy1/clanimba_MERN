@@ -9,9 +9,9 @@
     background:white;
     padding:10px;
     width:90%;
-    font-size:16px;
+    font-size:12px;
 }
 
 .userWrapper{
-    width:11%;
+    min-width: 115px;
 }

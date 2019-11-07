@@ -19,3 +19,13 @@
     width:18%;
     padding-top: 30px;
 }
+
+.userContainer > .user{
+    padding:0;
+    height: 100%;
+}
+
+.Home > .NewPost{
+    margin-top: 20px;
+    padding: 20px;
+}

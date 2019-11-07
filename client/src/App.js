@@ -7,33 +7,39 @@ import './App.css';
 
 class App extends React.Component{
   state = {
-    auth: false,
     uid: null,
     token: ""
   };
 
   setToken = (token) => {
     console.log("setToken is reached")
+    //This is the code token, not the oAuth access token. This is used as a unique id for the users current session with his access token from oauth.
     let tokenTrim = token.split("=");
     this.setState({
       auth: true,
       token: tokenTrim[1]
     }, ()=>{
-      console.log(this.state.token);
+      localStorage.setItem("auth", "true");
+      localStorage.setItem("token", tokenTrim[1]);
     });
   };
+
+  componentWillMount(){
+    if(localStorage.getItem("auth") === "true"){
+      this.setState({
+        auth: true,
+        token: localStorage.getItem("token")
+      })
+    }
+  }
 
   render(){
     
     return (
       <BrowserRouter>
         <div className="App">
-          {/* -------------- LEGIT CODE BELOW REMOVED FOR TESTING ---------------- */}
           <Route path="/" exact render={ this.state.auth == true ? (props) => (<Home {...props} token={this.state.token} />) : (props) => (<Login {...props} /> )} />
-          {/* <Route path = "/" render = {props => <Home {...props} />} /> */}
           <Route path="/callback" render={ props => <Callback {...props} setToken={this.setToken} />} />
-       
-
         </div>
       </BrowserRouter>
     );
