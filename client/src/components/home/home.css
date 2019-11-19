@@ -4,16 +4,10 @@
     justify-content: space-between;
     flex-wrap: wrap;
     margin: 0 auto;
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(0,0,0,0) 20%);
+    z-index:100;
 }
-
-/* .composeMsg{
-    position: relative;
-    display: inline-block;
-    width:77%;
-    height: 214px;
-    margin-top: 20px;
-    background: rgb(206, 206, 206);
-} */
 
 .userContainer{
     width:18%;
@@ -28,4 +22,15 @@
 .Home > .NewPost{
     margin-top: 20px;
     padding: 20px;
+}
+
+.Home > .user{
+    background: rgb(0, 38, 141);
+    padding-top: 10px;
+    color: rgb(243, 243, 243);
+    border-radius: 0 0 10px 10px;
+    background: url(../../assets/allianceFlag.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }

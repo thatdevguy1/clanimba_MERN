@@ -1,5 +1,10 @@
 .App{
+    position:relative;
     width: 100vw;
+    min-width:70vw;
+    background: url(./assets/allianceBG.png);
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .mainWrapper{
@@ -15,4 +20,18 @@
 .userWrapper > .user{
     padding: 10px;
     background:white;
+    border-radius: 5px;
+}
+
+.bgCover{
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(rgba(255,255,255,0), rgba(0,0,0,1) 7%);
+}
+
+@media only screen and (max-width: 1200px){
+    .App{
+        background-size: 1200px auto;
+    }
 }

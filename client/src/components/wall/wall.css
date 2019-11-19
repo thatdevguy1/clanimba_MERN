@@ -1,11 +1,12 @@
 .wall{
     width: 100%;
     margin-top: 20px;
-    border: solid 1px rgb(228, 228, 228);
+    border-radius: 5px;
     display:flex;
     flex-direction: column;
    justify-content: space-around;
    align-content: center;
    padding: 20px 0 80px 0;
+   z-index:100;
 }
 

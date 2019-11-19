@@ -4,14 +4,12 @@ import Wall from '../wall/wall';
 import NewPost from '../newPost/newPost'
 import { connect } from 'react-redux';
 import './home.css';
+import allianceFlag from '../../assets/allianceFlag.jpg'
 import wowIcon from '../../assets/wowIcon.png'
 import * as actionCreators from '../../store/action/actions';
 
 class Home extends React.Component {
-  state = {
-    battletag: "",
-    token: ""
-  };
+  state = {};
 
   componentWillMount = () => { 
     this.props.saveUser(this.props.token);
@@ -21,6 +19,7 @@ class Home extends React.Component {
     return (
       <div className="Home">
         
+
         <User user={this.props.battletag} icon={this.props.charImg}/>
         <NewPost type="normalPost"/>
         
@@ -40,7 +39,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
   return {
     saveUser: (result) => dispatch(actionCreators.storeResult(result))
-    //saveUser: () => dispatch({type: 'SAVE_USER'})
   };
 };
 

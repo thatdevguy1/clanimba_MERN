@@ -23,61 +23,61 @@ export const savePosts = (res) => {
 
 export const findPosts = () => {
   return dispatch => {
-    axios.get(`/posts`)
-    .then( (response) => {
-      console.log(JSON.stringify(response));
+    axios.get(`/posts`).then( (response) => {
       // handle success
       dispatch(savePosts(response));
-    })
-    .catch(function (error) {
+    }).catch(function (error) {
       // handle error SEND BACK TO LOGIN***
       console.log(error);
     });
-  }
-}
-
-
+  };
+};
 
 export const storeResult = ( res ) => {
   return dispatch => {
-      axios.get(`/user/${res}`)
-        .then( (response) => {
+      axios.get(`/user/${res}`).then( (response) => {
           // handle success
           dispatch(saveResult(response));
-        })
-        .catch(function (error) {
+        }).catch(function (error) {
           // handle error SEND BACK TO LOGIN***
           console.log(error);
         });
-    }
+    };
 };
 
 export const storeMsg = ( res ) => {
   return dispatch => {
-    axios.post(`/msg/${escape(res.user)}/${res.msg}/${res.icon}`)
-      .then( (response) => {
+    const data = {
+      user: res.user,
+      msg: res.msg,
+      icon: res.icon
+    };
+    axios.post(`/msg`, data).then( (response) => {
         // handle success
         console.log(`The result in the ajax call is: ${JSON.stringify(response)}`)
         dispatch(saveMsg(response));
-      })
-      .catch(function (error) {
+      }).catch(function (error) {
         // handle error SEND BACK TO LOGIN***
         console.log(error);
     });
-  }
+  };
 };
 
 export const storeReply = ( res ) => {
   return dispatch => {
-    axios.put(`/reply/${escape(res.user)}/${res.msg}/${res.icon}/${res.opId}`)
-      .then( (response) => {
+    const data = {
+      user: res.user,
+      msg: res.msg,
+      icon: res.icon,
+      opId: res.opId
+    };
+    axios.put(`/reply`, data).then( (response) => {
         // handle success
         console.log(`The result in the ajax call for REPLY is: ${JSON.stringify(response)}`)
         dispatch(saveMsg(response));
-      })
-      .catch(function (error) {
+      }).catch(function (error) {
         // handle error SEND BACK TO LOGIN***
         console.log(error);
     });
-  }
+  };
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import './user.css';
 import wowIcon from '../../assets/wowIcon.png';
-import {Grid, Avatar, TextField} from '@material-ui/core';
+import {Grid, Avatar} from '@material-ui/core';
 
 class User extends React.Component{
 

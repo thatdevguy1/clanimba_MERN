@@ -19,16 +19,16 @@ class App extends React.Component{
       auth: true,
       token: tokenTrim[1]
     }, ()=>{
-      localStorage.setItem("auth", "true");
-      localStorage.setItem("token", tokenTrim[1]);
+      sessionStorage.setItem("auth", "true");
+      sessionStorage.setItem("token", tokenTrim[1]);
     });
   };
 
   componentWillMount(){
-    if(localStorage.getItem("auth") === "true"){
+    if(sessionStorage.getItem("auth") === "true"){
       this.setState({
         auth: true,
-        token: localStorage.getItem("token")
+        token: sessionStorage.getItem("token")
       })
     }
   }
@@ -38,6 +38,7 @@ class App extends React.Component{
     return (
       <BrowserRouter>
         <div className="App">
+        <div className="bgCover"></div>
           <Route path="/" exact render={ this.state.auth == true ? (props) => (<Home {...props} token={this.state.token} />) : (props) => (<Login {...props} /> )} />
           <Route path="/callback" render={ props => <Callback {...props} setToken={this.setToken} />} />
         </div>

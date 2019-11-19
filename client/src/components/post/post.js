@@ -9,9 +9,9 @@ import {Paper} from '@material-ui/core';
 
 class Post extends React.Component {
     
-   
-
+  
     render() { 
+     
          let replies = this.props.replyMsgs.map(reply => {
              console.log("replies loop");
                 return  <Reply user={reply.user} icon={reply.icon} msg={reply.msg}/>
@@ -22,10 +22,15 @@ class Post extends React.Component {
                     <User user={this.props.userName} icon={this.props.posterIcon} />
                 </div>
                 <div className="postMsg">
-                    {this.props.msg}
+                    <span style={{whiteSpace: 'pre-line'}}>
+
+                        {this.props.msg}
+                    </span>
                     <hr/>
                     <div className="replySection">
+                    <span style={{whiteSpace: 'pre-line'}}>
                         {replies}
+                    </span>
                         <NewPost type="replyPost" opId={this.props.opId} />
                     </div>
                 </div>

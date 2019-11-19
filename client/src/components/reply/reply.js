@@ -4,6 +4,7 @@ import './reply.css';
 import {Paper} from '@material-ui/core';
 
 class Reply extends React.Component {
+
     render() { 
         return (
             <div className="reply">

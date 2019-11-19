@@ -49,19 +49,20 @@ app.get('/posts', (req, res) => {
   });
 });
 
-app.post('/msg/:user/:msg/:server/:numOne/:numTwo', (req, res) => {
-  console.log(req.params.user + ": " + req.params.msg);
-  const user = req.params.user;
-  const charImg = `${req.params.server}/${req.params.numOne}/${req.params.numTwo}`;
-  let msg = req.params.msg;
-  const date = new Date();
+// app.post('/msg/:user/:msg/:server/:numOne/:numTwo', (req, res) => {
+  app.post('/msg', (req, res) => {
+    console.log(req.body.user);
+    const user = req.body.user;
+    const charImg = req.body.icon;
+    let msg = req.body.msg;
+    const date = new Date();
 
-  let newPost = new Posts({
-    user: user,
-    charImg: charImg,
-    post: msg,
-    date: date,
-    replies: []
+    let newPost = new Posts({
+      user: user,
+      charImg: charImg,
+      post: msg,
+      date: date,
+      replies: []
   });
 
   newPost.save(function(err, post){
@@ -76,12 +77,12 @@ app.post('/msg/:user/:msg/:server/:numOne/:numTwo', (req, res) => {
   });
 });
 
-app.put('/reply/:user/:msg/:server/:numOne/:numTwo/:opId', (req, res) => {
-  console.log(req.params.user + ": " + req.params.msg);
-  const user = req.params.user;
-  const charImg = `${req.params.server}/${req.params.numOne}/${req.params.numTwo}`;
-  let msg = req.params.msg;
-  const opId = req.params.opId;
+app.put('/reply', (req, res) => {
+  console.log(req.body.user + ": " + req.body.msg);
+  const user = req.body.user;
+  const charImg = req.body.icon;
+  let msg = req.body.msg;
+  const opId = req.body.opId;
   const date = new Date();
 
   Posts.findOneAndUpdate({_id: opId}, {$push: {replies : {user: user, icon: charImg, msg: msg}}}, {new: true}, (err, doc) => {
