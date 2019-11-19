@@ -1,7 +1,7 @@
 .Home{
     width: 1000px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     flex-wrap: wrap;
     margin: 0 auto;
     background: rgb(255,255,255);
@@ -25,12 +25,10 @@
 }
 
 .Home > .user{
-    background: rgb(0, 38, 141);
     padding-top: 10px;
     color: rgb(243, 243, 243);
     border-radius: 0 0 10px 10px;
-    background: url(../../assets/allianceFlag.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

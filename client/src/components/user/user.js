@@ -26,7 +26,6 @@ class User extends React.Component{
           <Avatar src={icon} />
           <p>{this.props.user}</p>
         </Grid>
-          
       </div>
     );
 

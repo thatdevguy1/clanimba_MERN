@@ -225,8 +225,12 @@ mongoose.connect(db, {
         if(err){
         console.error("Error! " + err);
      }
-}); 
-
-
-/* --------- SERVER LISTENING ---------- */
-app.listen(port, () => console.log(`app listening on port ${port}!`));
+}).then(result => {
+  /*SOCKET IO HOOK UP AND LISTEN TO SERVER ON MONGOOSE SUCCESS */
+  const server = app.listen(port, () => console.log(`app listening on port ${port}!`));
+  const io = require('./socket').init(server);
+  io.on('connection', socket => {
+    console.log('Client connected');
+  });
+})
+.catch(err => console.log(err));
