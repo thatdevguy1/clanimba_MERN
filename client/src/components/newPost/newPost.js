@@ -1,9 +1,9 @@
 import React from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux'
 import './newPost.css';
 import * as actionCreators from '../../store/action/actions';
 import {TextField} from '@material-ui/core';
+import openSocket from 'socket.io-client';
 
 
 
@@ -12,6 +12,23 @@ class NewPost extends React.Component {
     msg: ""
   };
   
+    
+  
+  
+  // componentDidMount = () => {
+  //   const socket = openSocket('http://localhost:8080');
+  //   socket.on('posts', data => {
+  //     console.log("socket new post reached " + JSON.stringify(data.post));
+  //     if (data.action === 'create') {
+  //       console.log("socket new post in if statement reached");
+  //       this.props.savePost(data.post);
+  //     } 
+  //   });
+  // }
+
+  componentWillUnmount = () => {
+
+  }
 
   handlePost = (event) => {
     event.preventDefault();
@@ -67,7 +84,7 @@ const mapDispatchToProps = dispatch => {
   return {
     saveMsg: (result) => dispatch(actionCreators.storeMsg(result)),
     saveReply: (result) => dispatch(actionCreators.storeReply(result))
-    //saveUser: () => dispatch({type: 'SAVE_USER'})
+    // savePost: (data) => dispatch({type: 'SAVE_MSG', result: {data}})
   };
 };
 

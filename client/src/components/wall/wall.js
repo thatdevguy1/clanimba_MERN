@@ -1,4 +1,5 @@
 import React from 'react';
+import openSocket from 'socket.io-client';
 import Post from '../post/post';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../store/action/actions';
@@ -7,7 +8,25 @@ import './wall.css';
 class Wall extends React.Component{
 
   componentWillMount(){
+   
     this.props.findPosts();
+  }
+
+    
+  componentDidMount = () => {
+    const socket = openSocket('http://localhost:8080');
+    socket.on('posts', data => {
+      console.log("socket new post reached " + JSON.stringify(data.post));
+      //Switch set up in case of future seperation between create and reply reducer dispatch
+      switch(data.action){
+        case 'create' : console.log("socket new post reached");
+                        this.props.savePost(data.post);
+                        break;
+        case 'reply' : console.log("socket reply reached");
+                       this.props.savePost(data.post);
+                       break;
+      }
+    });
   }
 
   render(){
@@ -27,7 +46,8 @@ const mapStatetoProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    findPosts: () => dispatch(actionCreators.findPosts())
+    findPosts: () => dispatch(actionCreators.findPosts()),
+    savePost: (data) => dispatch({type: 'SAVE_MSG', result: {data}})
     //saveUser: () => dispatch({type: 'SAVE_USER'})
   };
 };

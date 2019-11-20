@@ -1,4 +1,5 @@
 const express = require('express')
+const io = require('./socket');
 const path = require('path');
 const axios = require('axios');
 const dotenv = require('dotenv');
@@ -29,21 +30,18 @@ app.get('/user/:token', (req, res) => {
       console.log("Error retrieving user " + err);
       res.status(404);
 		} else {
-      console.log(`THIS IS USERINFO ---------->  ${userInfo}`);
 			res.json(userInfo);
 		}
   });
 });
 
 app.get('/posts', (req, res) => {
-  console.log(req.params.token);
   Posts.find(function(err, posts){
 		if(err){
       
       console.log("Error retrieving user " + err);
       res.status(404);
 		} else {
-      console.log(`THIS IS POSTS ---------->  ${posts}`);
 			res.json(posts);
 		}
   });
@@ -51,6 +49,7 @@ app.get('/posts', (req, res) => {
 
 // app.post('/msg/:user/:msg/:server/:numOne/:numTwo', (req, res) => {
   app.post('/msg', (req, res) => {
+
     console.log(req.body.user);
     const user = req.body.user;
     const charImg = req.body.icon;
@@ -67,18 +66,20 @@ app.get('/posts', (req, res) => {
 
   newPost.save(function(err, post){
 		if(err){
-      
       console.log("Error retrieving user " + err);
       res.status(404);
 		} else {
-      console.log(`THIS IS THE RESULT OF THE UPDATEONE MSG ---------->  ${JSON.stringify(post)}`);
+      io.getIO().emit('posts', {
+        action: 'create',
+        post: newPost
+      });
       res.status(200).json(newPost);
 		}
   });
+
 });
 
 app.put('/reply', (req, res) => {
-  console.log(req.body.user + ": " + req.body.msg);
   const user = req.body.user;
   const charImg = req.body.icon;
   let msg = req.body.msg;
@@ -89,7 +90,10 @@ app.put('/reply', (req, res) => {
     if (err){
       res.status(404);
     }
-    console.log(doc);
+    io.getIO().emit('posts', {
+      action: 'reply',
+      post: doc
+    });
     res.status(200).json(doc);
 });
 

@@ -32,7 +32,6 @@ const reducer = (state = initialState, action) => {
             } 
             return {
                 ...state,
-                battletag: action.result.data.user,
                 post: post
             };
         
