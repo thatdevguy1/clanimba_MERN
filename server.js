@@ -118,7 +118,7 @@ const credentials = {
   const oauth2 = require('simple-oauth2').create(credentials);
 
   const authorizationUri = oauth2.authorizationCode.authorizeURL({
-    redirect_uri: 'http://localhost:8080/callback',
+    redirect_uri: 'https://clanimba.herokuapp.com/callback',
     scope: 'wow.profile',
     response_type: 'code'
 
