@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.eb815cce.chunk.css",
-    "main.js": "/static/js/main.5d8e2de9.chunk.js",
-    "main.js.map": "/static/js/main.5d8e2de9.chunk.js.map",
+    "main.css": "/static/css/main.bbea07d0.chunk.css",
+    "main.js": "/static/js/main.573ae8a2.chunk.js",
+    "main.js.map": "/static/js/main.573ae8a2.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.0191581f.js",
     "runtime-main.js.map": "/static/js/runtime-main.0191581f.js.map",
     "static/js/2.67dc2b62.chunk.js": "/static/js/2.67dc2b62.chunk.js",
     "static/js/2.67dc2b62.chunk.js.map": "/static/js/2.67dc2b62.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.db801d307b6559cb5ac745fa49470b78.js": "/precache-manifest.db801d307b6559cb5ac745fa49470b78.js",
+    "precache-manifest.e9bb4bd0cdf22a2113cc4382a4ce1f94.js": "/precache-manifest.e9bb4bd0cdf22a2113cc4382a4ce1f94.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.eb815cce.chunk.css.map": "/static/css/main.eb815cce.chunk.css.map",
+    "static/css/main.bbea07d0.chunk.css.map": "/static/css/main.bbea07d0.chunk.css.map",
     "static/media/allianceFlag.jpg": "/static/media/allianceFlag.62af69d8.jpg",
     "static/media/App.css": "/static/media/ironForge.b1a9bc25.jpg",
     "static/media/wowIcon.png": "/static/media/wowIcon.7ea61479.png"
@@ -18,7 +18,7 @@
   "entrypoints": [
     "static/js/runtime-main.0191581f.js",
     "static/js/2.67dc2b62.chunk.js",
-    "static/css/main.eb815cce.chunk.css",
-    "static/js/main.5d8e2de9.chunk.js"
+    "static/css/main.bbea07d0.chunk.css",
+    "static/js/main.573ae8a2.chunk.js"
   ]
 }
