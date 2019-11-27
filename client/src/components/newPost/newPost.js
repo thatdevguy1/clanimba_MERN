@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import User from '../user/user';
 import './newPost.css';
 import * as actionCreators from '../../store/action/actions';
 import {TextField} from '@material-ui/core';
@@ -11,9 +12,6 @@ class NewPost extends React.Component {
   state = {
     msg: ""
   };
-  
-    
-  
   
   // componentDidMount = () => {
   //   const socket = openSocket('http://localhost:8080');
@@ -38,11 +36,11 @@ class NewPost extends React.Component {
     this.props.type === "normalPost" ? this.props.saveMsg({
       user: this.props.battletag,
       msg: this.state.msg,
-      icon: this.props.icon
+      icon: this.props.charImg
     }) : this.props.saveReply({
       user: this.props.battletag,
       msg: this.state.msg,
-      icon: this.props.icon,
+      icon: this.props.charImg,
       opId: this.props.opId
     })
     //send ajax call to post msg
@@ -56,8 +54,10 @@ class NewPost extends React.Component {
   };
 
   render(){
+    let userEle = this.props.showIcon ? <User user={this.props.battletag} icon={this.props.charImg} mainIcon={true}/> : "";
     return (
       <div className="NewPost">
+       {userEle} 
        <TextField
             id="outlined-basic"
             label={this.props.type === "normalPost" ? "New Post" : "New Reply"}
@@ -77,7 +77,7 @@ class NewPost extends React.Component {
 
 const mapStateToProps = state => ({
   battletag: state.battletag,
-  icon: state.icon
+  charImg: state.icon
 });
 
 const mapDispatchToProps = dispatch => {

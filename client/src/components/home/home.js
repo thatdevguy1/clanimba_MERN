@@ -1,5 +1,4 @@
 import React from 'react';
-import User from '../user/user';
 import Wall from '../wall/wall';
 import NewPost from '../newPost/newPost'
 import { connect } from 'react-redux';
@@ -17,12 +16,8 @@ class Home extends React.Component {
   
   render(){
     return (
-      <div className="Home">
-        
-
-        <User user={this.props.battletag} icon={this.props.charImg}/>
-        <NewPost type="normalPost"/>
-        
+      <div className="Home">        
+        <NewPost type="normalPost" showIcon={true}/>
         <Wall />
       </div>
     ); 

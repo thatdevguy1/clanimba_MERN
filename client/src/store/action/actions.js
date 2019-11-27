@@ -1,22 +1,26 @@
 import axios from 'axios';
 
+export const SAVE_USER = "SAVE_USER";
+export const SAVE_MSG = "SAVE_MSG";
+export const SAVE_POSTS = "SAVE_POSTS";
+
 export const saveResult = ( res ) => {
   return {
-      type: 'SAVE_USER',
+      type: SAVE_USER,
       result: res
   };
 }
 
 export const saveMsg = (res) => {
   return {
-    type: 'SAVE_MSG',
+    type: SAVE_MSG,
     result: res
   }
 };
 
 export const savePosts = (res) => {
   return{
-    type: 'SAVE_POSTS',
+    type: SAVE_POSTS,
     result: res
   }
 }

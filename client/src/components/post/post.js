@@ -18,20 +18,20 @@ class Post extends React.Component {
             })
         return ( 
             <div className="post">
-                <div className="userMsgContainer">
-                    <User user={this.props.userName} icon={this.props.posterIcon} />
-                </div>
+                {/* <div className="userMsgContainer">
+                    
+                </div> */}
                 <div className="postMsg">
-                    <span style={{whiteSpace: 'pre-line'}}>
-
+                <User user={this.props.userName} icon={this.props.posterIcon} />
+                    <p style={{whiteSpace: 'pre-line', wordWrap: "break-word", fontSize:"18px", textAlign:"center"}}>
                         {this.props.msg}
-                    </span>
+                    </p>
                     <hr/>
                     <div className="replySection">
                     <span style={{whiteSpace: 'pre-line'}}>
                         {replies}
                     </span>
-                        <NewPost type="replyPost" opId={this.props.opId} />
+                        <NewPost type="replyPost" opId={this.props.opId} showIcon={false}/>
                     </div>
                 </div>
             </div>

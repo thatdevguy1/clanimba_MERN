@@ -7,19 +7,8 @@ class Login extends React.Component{
     
     return (
       <div className="login">
-        <form>
-          <label>
-            Blizzard User Name
-          </label>
-          <input name="username"></input>
-          <label>
-            Blizzard Password
-          </label>
-          <input name="passwprd"></input>
-          <button className="oAuthSubmit"></button>
-
-          <a href="/auth">Log in with BLIZZ</a>
-        </form>
+        <h1>Welcome to clan iMBA</h1>
+        <a href="/auth"><button>Sign in with Blizzard</button></a>
       </div>
     );
 

@@ -1,7 +1,7 @@
 .Home{
     width: 1000px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     flex-wrap: wrap;
     margin: 0 auto;
     background: rgb(255,255,255);
@@ -20,7 +20,7 @@
 }
 
 .Home > .NewPost{
-    margin-top: 20px;
+    margin-top: 60px;
     padding: 20px;
 }
 

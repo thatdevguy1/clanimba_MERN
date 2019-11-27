@@ -38,7 +38,6 @@ class App extends React.Component{
     return (
       <BrowserRouter>
         <div className="App">
-        <div className="bgCover"></div>
           <Route path="/" exact render={ this.state.auth == true ? (props) => (<Home {...props} token={this.state.token} />) : (props) => (<Login {...props} /> )} />
           <Route path="/callback" render={ props => <Callback {...props} setToken={this.setToken} />} />
         </div>

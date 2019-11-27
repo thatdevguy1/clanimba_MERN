@@ -11,7 +11,7 @@
 .replyMsg{
     background:white;
     padding:10px;
-    width:90%;
+    width: auto;
     font-size:12px;
     border-radius: 5px;
 }

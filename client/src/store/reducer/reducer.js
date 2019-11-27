@@ -1,3 +1,5 @@
+import * as actionTypes from '../action/actions';
+
 const initialState = {
     battletag: '',
     icon: '',
@@ -10,7 +12,7 @@ const reducer = (state = initialState, action) => {
 
     switch(action.type) {
 
-        case "SAVE_USER":
+        case actionTypes.SAVE_USER:
             return {
                 ...state, 
                 battletag: action.result.data.battleTag,
@@ -19,7 +21,7 @@ const reducer = (state = initialState, action) => {
             };
 
         //SAVING POSTS TO DB
-        case "SAVE_MSG":
+        case actionTypes.SAVE_MSG:
             if (state.post.filter(e => e._id === action.result.data._id).length > 0) {
                 var post = state.post.map(post => {
                     if (post._id != action.result.data._id){
@@ -35,8 +37,8 @@ const reducer = (state = initialState, action) => {
                 post: post
             };
         
-            //GETTING POSTS FROM DB (bad naming for case)
-        case "SAVE_POSTS":
+        //GETTING POSTS FROM DB (bad naming for case)
+        case actionTypes.SAVE_POSTS:
         console.log("getting posts reached in reducer"+ JSON.stringify(action.result.data));
             return {
                 ...state, 
