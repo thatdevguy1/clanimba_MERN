@@ -4,8 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "start": "node server",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd client && npm run build && cd .. && node server"
+    "bns": "cd client && npm run build && cd .. && node server"
   },
   "repository": {
     "type": "git",
