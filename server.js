@@ -121,9 +121,6 @@ const credentials = {
     redirect_uri: 'https://clanimba.herokuapp.com/callback',
     scope: 'wow.profile',
     response_type: 'code'
-
-
-    // state: ''
   });
    
   // Get the access token object (the authorization code is given from the previous step).
@@ -139,7 +136,7 @@ const credentials = {
       code,
       grant_type: 'authorization_code',
       scope: 'wow.profile',
-      redirect_uri: 'http://localhost:8080/callback'
+      redirect_uri: 'https://clanimba.herokuapp.com/callback'
     };
 
     try {
