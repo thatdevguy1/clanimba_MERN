@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bns": "cd client && npm run build && cd .. && node server"
+    "start": "cd client && npm run build && cd .. && node server"
   },
   "repository": {
     "type": "git",
