@@ -14,7 +14,8 @@ class Wall extends React.Component{
 
     
   componentDidMount = () => {
-    const socket = openSocket('https://clanimba.herokuapp.com/');
+    // const socket = openSocket('https://clanimba.herokuapp.com/');
+    const socket = openSocket('https://localhost:8080');
     socket.on('posts', data => {
       console.log("socket new post reached " + JSON.stringify(data.post));
       //Switch set up in case of future seperation between create and reply reducer dispatch
