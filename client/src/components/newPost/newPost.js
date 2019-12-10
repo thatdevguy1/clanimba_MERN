@@ -4,25 +4,12 @@ import User from '../user/user';
 import './newPost.css';
 import * as actionCreators from '../../store/action/actions';
 import {TextField} from '@material-ui/core';
-import openSocket from 'socket.io-client';
-
 
 
 class NewPost extends React.Component {
   state = {
     msg: ""
   };
-  
-  // componentDidMount = () => {
-  //   const socket = openSocket('http://localhost:8080');
-  //   socket.on('posts', data => {
-  //     console.log("socket new post reached " + JSON.stringify(data.post));
-  //     if (data.action === 'create') {
-  //       console.log("socket new post in if statement reached");
-  //       this.props.savePost(data.post);
-  //     } 
-  //   });
-  // }
 
   componentWillUnmount = () => {
 
