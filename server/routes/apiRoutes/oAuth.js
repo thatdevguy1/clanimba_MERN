@@ -26,8 +26,8 @@ const router = express.Router();
   const oauth2 = require('simple-oauth2').create(credentials);
 
   const authorizationUri = oauth2.authorizationCode.authorizeURL({
-    //redirect_uri: 'https://clanimba.herokuapp.com/callback',
-    redirect_uri: 'http://localhost:8080/callback',
+    redirect_uri: 'https://clanimba.herokuapp.com/callback',
+    //redirect_uri: 'http://localhost:8080/callback',
     scope: 'wow.profile',
     response_type: 'code'
 
@@ -48,8 +48,8 @@ const router = express.Router();
       code,
       grant_type: 'authorization_code',
       scope: 'wow.profile',
-      //redirect_uri: 'https://clanimba.herokuapp.com/callback'
-      redirect_uri: 'http://localhost:8080/callback'
+      redirect_uri: 'https://clanimba.herokuapp.com/callback'
+      //redirect_uri: 'http://localhost:8080/callback'
     };
 
     try {
