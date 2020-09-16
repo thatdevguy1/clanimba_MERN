@@ -66,9 +66,10 @@ const router = express.Router();
           method: 'get',
           url: `https://us.battle.net/oauth/userinfo?access_token=${token.token.access_token}`
       }).then(function (response) {
+          console.log(response.data);
           axios({
             method: 'get',
-            url: `https://us.api.blizzard.com/profile/wow/character?access_token=${token.token.access_token}`
+            url: `https://us.api.blizzard.com/profile/user/wow?access_token=${token.token.access_token}`
           })
           .then(function (response2) {
               console.log(response2.data);
