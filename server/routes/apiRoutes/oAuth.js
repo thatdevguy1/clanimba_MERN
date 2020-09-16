@@ -111,10 +111,10 @@ const router = express.Router();
               });
           })
           .catch(err => {
-              console.error("Error Getting Userinfo", err.message);
+              console.error("Error Getting Userinfo from api endpoint", err.message);
           });
     }).catch(err => {
-        console.error("Error Getting Userinfo", err.message);
+        console.error("Error Getting Userinfo from oAuth endpoint", err.message);
     })
 
     } catch (error) {
