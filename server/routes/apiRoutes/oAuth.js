@@ -69,7 +69,7 @@ const router = express.Router();
           console.log(response.data);
           axios({
             method: 'get',
-            url: `https://us.api.blizzard.com/profile/user/wow?access_token=${token.token.access_token}`
+            url: `https://us.api.blizzard.com/profile/user/wow?access_token=${token.token.access_token}&namespace=static-us`
           })
           .then(function (response2) {
               console.log(response2.data);
