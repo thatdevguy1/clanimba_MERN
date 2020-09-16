@@ -68,7 +68,7 @@ const router = express.Router();
       }).then(function (response) {
           axios({
             method: 'get',
-            url: `https://us.api.blizzard.com//wow/user/characters?access_token=${token.token.access_token}`
+            url: `https://us.api.blizzard.com/profile/wow/character?access_token=${token.token.access_token}`
           })
           .then(function (response2) {
               console.log(response2.data);
@@ -113,10 +113,6 @@ const router = express.Router();
           .catch(err => {
               console.error("Error Getting Userinfo", err.message);
           });
-      
-        
-        
-
     }).catch(err => {
         console.error("Error Getting Userinfo", err.message);
     })
