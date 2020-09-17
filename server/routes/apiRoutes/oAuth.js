@@ -63,63 +63,58 @@ const router = express.Router();
       axios({
           method: 'get',
           url: `https://us.battle.net/oauth/userinfo?access_token=${token.token.access_token}`
-      }).then(function (response) {
-          console.log(response.data);
-          axios({
+      }).then(async function (response) {
+          
+        try{
+          const response2 = await axios({
             method: 'get',
             url: `https://us.api.blizzard.com/profile/user/wow?access_token=${token.token.access_token}&namespace=profile-us&locale=en_us`
-          })
-          .then(function (response2) {
-              console.log(response2.data);
-              var newUser;
-
-              axios({
-                method: 'get',
-                url: `https://us.api.blizzard.com/profile/wow/character/${response2.data.wow_accounts[0].characters[0].realm.slug}/${response2.data.wow_accounts[0].characters[0].name.toLowerCase()}/character-media?access_token=${token.token.access_token}&namespace=profile-us&locale=en_us`
-              }).then(function(response3) {
-
-                if(response2.data.wow_accounts[0].characters.length > 0) {
-                  newUser = new User({
-                    battleTag: response.data.battletag,
-                    charImg: response3.data.avatar_url,
-                    guild: null,
-                    token: code
-                  });
-              } else {
-                newUser = new User({
-                  battleTag: response.data.battletag,
-                  charImg: null,
-                  guild: null,
-                  token: code
-                });
-              }
-      
-                User.count({battleTag: response.data.battletag}, (err, docs) => {
-                    if (err) throw err;
-                    if(docs > 0){
-                      console.log("found a user in database " + response.data.battletag);
-                        User.findOneAndUpdate({battleTag : response.data.battletag}, {token : code}, (err, doc) => {
-                            if (err) throw err;
-                            console.log(doc);
-                            res.sendFile(path.join(__dirname, "../../../client/build/index.html")); 
-                        });
-                    } else {
-                        newUser.save((err, user)=>{
-                          console.log(user)
-                            if (err) throw err;
-                            return res.sendFile(path.join(__dirname, "../../../client/build/index.html")); 
-                        });
-                    }
-                });
-            }).catch(err => {
-              console.error("Error Getting Userinfo from api endpoint (for image)", err.message)
-            })
-              })
-
-              
-          .catch(err => {
-              console.error("Error Getting Userinfo from api endpoint", err.message);
           });
+            
+          var newUser;
+
+          const response3 = await axios({
+            method: 'get',
+            url: `https://us.api.blizzard.com/profile/wow/character/${response2.data.wow_accounts[0].characters[0].realm.slug}/${response2.data.wow_accounts[0].characters[0].name.toLowerCase()}/character-media?access_token=${token.token.access_token}&namespace=profile-us&locale=en_us`
+          });
+            
+          if(response2.data.wow_accounts[0].characters.length > 0) {
+              newUser = new User({
+                battleTag: response.data.battletag,
+                charImg: response3.data.avatar_url,
+                guild: null,
+                token: code
+              });
+          } else {
+            newUser = new User({
+              battleTag: response.data.battletag,
+              charImg: null,
+              guild: null,
+              token: code
+            });
+          }
+
+          User.count({battleTag: response.data.battletag}, (err, docs) => {
+            if (err) throw err;
+            if(docs > 0){
+              console.log("found a user in database " + response.data.battletag);
+                User.findOneAndUpdate({battleTag : response.data.battletag}, {token : code}, (err, doc) => {
+                  if (err) throw err;
+                  console.log(doc);
+                  res.sendFile(path.join(__dirname, "../../../client/build/index.html")); 
+                });
+            } else { 
+                newUser.save((err, user)=>{
+                  console.log(user)
+                    if (err) throw err;
+                    return res.sendFile(path.join(__dirname, "../../../client/build/index.html")); 
+                });
+              };
+          });
+        } catch (error) {
+          console.log("Error getting character profile info from blizzard api", error.message);
+        };
+          
     }).catch(err => {
         console.error("Error Getting Userinfo from oAuth endpoint", err.message);
     })
