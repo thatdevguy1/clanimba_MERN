@@ -79,7 +79,7 @@ const router = express.Router();
               axios({
                 method: 'get',
                 //USKbn2qGYoTlO7ONmb5SJGTNkRhYeKEAeK
-                url: `https://us.api.blizzard.com/profile/wow/character/${response2.data.wow_accounts[0].characters[0].realm.slug}${response2.data.wow_accounts[0].characters[0].name}?access_token=${token.token.access_token}&namespace=profile-us&locale=en_us`
+                url: `https://us.api.blizzard.com/profile/wow/character/${response2.data.wow_accounts[0].characters[0].realm.slug}/${response2.data.wow_accounts[0].characters[0].name}?access_token=${token.token.access_token}&namespace=profile-us&locale=en_us`
               }).then(function(response3) {
 
                 if(response2.data.wow_accounts[0].characters.length > 0) {
