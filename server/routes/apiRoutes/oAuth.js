@@ -69,48 +69,59 @@ const router = express.Router();
           console.log(response.data);
           axios({
             method: 'get',
-            url: `https://us.api.blizzard.com/profile/user/wow?access_token=${token.token.access_token}&namespace=profile-us`
+            //USKbn2qGYoTlO7ONmb5SJGTNkRhYeKEAeK
+            url: `https://us.api.blizzard.com/profile/user/wow?access_token=${token.token.access_token}&namespace=profile-us&locale=en_us`
           })
           .then(function (response2) {
               console.log(response2.data);
               var newUser;
 
-              //user information based on the first charachter in the list
+              axios({
+                method: 'get',
+                //USKbn2qGYoTlO7ONmb5SJGTNkRhYeKEAeK
+                url: `https://us.api.blizzard.com/profile/wow/character/${response2.data.wow_accounts[0].characters[0].realm.slug}${response2.data.wow_accounts[0].characters[0].name}?access_token=${token.token.access_token}&namespace=profile-us&locale=en_us`
+              }).then(function(response3) {
 
-              if(response2.data.characters.length > 0) {
+                if(response2.data.wow_accounts[0].characters.length > 0) {
+                  newUser = new User({
+                    battleTag: response.data.battletag,
+                    charImg: response3.data.avatar_url,
+                    guild: null,
+                    token: code
+                  });
+              } else {
                 newUser = new User({
                   battleTag: response.data.battletag,
-                  charImg: response2.data.characters[0].thumbnail,
-                  guild: response2.data.characters[0].guild,
+                  charImg: null,
+                  guild: null,
                   token: code
                 });
-            } else {
-              newUser = new User({
-                battleTag: response.data.battletag,
-                charImg: null,
-                guild: null,
-                token: code
-              });
-            }
-    
-              User.count({battleTag: response.data.battletag}, (err, docs) => {
-                  if (err) throw err;
-                  if(docs > 0){
-                    console.log("found a user in database " + response.data.battletag);
-                      User.findOneAndUpdate({battleTag : response.data.battletag}, {token : code}, (err, doc) => {
-                          if (err) throw err;
-                          console.log(doc);
-                          res.sendFile(path.join(__dirname, "../../../client/build/index.html")); 
-                      });
-                  } else {
-                      newUser.save((err, user)=>{
-                        console.log(user)
-                          if (err) throw err;
-                          return res.sendFile(path.join(__dirname, "../../../client/build/index.html")); 
-                      });
-                  }
-              });
-          })
+              }
+      
+                User.count({battleTag: response.data.battletag}, (err, docs) => {
+                    if (err) throw err;
+                    if(docs > 0){
+                      console.log("found a user in database " + response.data.battletag);
+                        User.findOneAndUpdate({battleTag : response.data.battletag}, {token : code}, (err, doc) => {
+                            if (err) throw err;
+                            console.log(doc);
+                            res.sendFile(path.join(__dirname, "../../../client/build/index.html")); 
+                        });
+                    } else {
+                        newUser.save((err, user)=>{
+                          console.log(user)
+                            if (err) throw err;
+                            return res.sendFile(path.join(__dirname, "../../../client/build/index.html")); 
+                        });
+                    }
+                });
+            }).catch(err => {
+              console.error("Error Getting Userinfo from api endpoint (for image)", err.message)
+            })
+              })
+              //user information based on the first charachter in the list
+
+              
           .catch(err => {
               console.error("Error Getting Userinfo from api endpoint", err.message);
           });
