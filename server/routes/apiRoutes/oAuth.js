@@ -56,8 +56,6 @@ const router = express.Router();
       const result = await oauth2.authorizationCode.getToken(options);
       console.log("result is here:::::::::: " + JSON.stringify(result));
 
-      //console.log('The resulting token: ', result);
-
       const token = oauth2.accessToken.create(result);
       console.log("token is here::::::::::: " + JSON.stringify(token));
     
@@ -69,7 +67,6 @@ const router = express.Router();
           console.log(response.data);
           axios({
             method: 'get',
-            //USKbn2qGYoTlO7ONmb5SJGTNkRhYeKEAeK
             url: `https://us.api.blizzard.com/profile/user/wow?access_token=${token.token.access_token}&namespace=profile-us&locale=en_us`
           })
           .then(function (response2) {
@@ -78,8 +75,7 @@ const router = express.Router();
 
               axios({
                 method: 'get',
-                //USKbn2qGYoTlO7ONmb5SJGTNkRhYeKEAeK
-                url: `https://us.api.blizzard.com/profile/wow/character/${response2.data.wow_accounts[0].characters[0].realm.slug}/${response2.data.wow_accounts[0].characters[0].name}/character-media?access_token=${token.token.access_token}&namespace=profile-us&locale=en_us`
+                url: `https://us.api.blizzard.com/profile/wow/character/${response2.data.wow_accounts[0].characters[0].realm.slug}/${response2.data.wow_accounts[0].characters[0].name.toLowerCase()}/character-media?access_token=${token.token.access_token}&namespace=profile-us&locale=en_us`
               }).then(function(response3) {
 
                 if(response2.data.wow_accounts[0].characters.length > 0) {
@@ -119,7 +115,6 @@ const router = express.Router();
               console.error("Error Getting Userinfo from api endpoint (for image)", err.message)
             })
               })
-              //user information based on the first charachter in the list
 
               
           .catch(err => {
