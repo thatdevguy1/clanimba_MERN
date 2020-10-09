@@ -26,6 +26,8 @@ app.get("/", function(req, res) {
 
  /* MONGOOSE CONNECT */
  // const db = "mongodb://localhost:27017/imba";
+
+ //Don't forget to put this in an ENV...
  const db = "mongodb://heroku_jzhp8twp:s1ih886v6692equ0mugds4cksb@ds349618.mlab.com:49618/heroku_jzhp8twp";
  mongoose.Promise = global.Promise;
 

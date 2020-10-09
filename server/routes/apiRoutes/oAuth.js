@@ -17,8 +17,6 @@ const router = express.Router();
     },
     auth: {
       tokenHost: 'https://us.battle.net'
-    //   tokenPath: 'oauth/access_token',
-    //   authorizePath: 'oauth/authorize'
     }
   };
    
@@ -30,9 +28,6 @@ const router = express.Router();
     //redirect_uri: 'http://localhost:8080/callback',
     scope: 'wow.profile',
     response_type: 'code'
-
-
-    // state: ''
   });
    
   // Get the access token object (the authorization code is given from the previous step).
@@ -51,7 +46,7 @@ const router = express.Router();
       redirect_uri: 'https://clanimba.herokuapp.com/callback'
       //redirect_uri: 'http://localhost:8080/callback'
     };
-    
+
     try{
       const result = await oauth2.authorizationCode.getToken(options);
       console.log("result is here:::::::::: " + JSON.stringify(result));
