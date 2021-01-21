@@ -27,6 +27,6 @@
     "mongodb": "^3.3.2",
     "mongoose": "^5.7.4",
     "simple-oauth2": "^2.5.2",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.4.0"
   }
 }
